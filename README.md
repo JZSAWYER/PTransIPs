@@ -4,24 +4,30 @@ PTransIPs: Identification of SARS-CoV-2 phosphorylation sites based on protein p
 
 
 
-## Approach
+## Architecture
 
 ![flowchart](flowchart.png)
 
-## Usage
+## Table of Contents
 
+- [Step1: Generate two pretrained embedding](#step1-generate-two-pretrained-embedding)
+    * [Input1: Sequence](#input1-sequence)
+    * [Input2: Sequence pretrained embedding](#input2-sequence-pretrained-embedding)
+    * [Input3: Structure pretrained embedding](#input3-structure-pretrained-embedding)
+- [Step2: Training PTransIPs Model](#step2-training-ptransips-model)
+- [Step3: Evaluate the model performance on independent testset](#step3-evaluate-the-model-performance-on-independent-testset)
+- [Step4: Other Visual analysis](#step4-other-visual-analysis)
 
-
-### Step1: Generate two pretrained embedding
+## Step1: Generate two pretrained embedding
 
 (**For ones that wish to skip this step:** We have already uploaded complete embeddings for Y sites in the data folder `./embedding/`. For S/T sites, you may download complete embeddings from [**All PTransIPs pretrained embeddings**](https://1drv.ms/f/s!AqzWnkSOWHpvhxMUDCjM9KFpz50O?e=N23jEn) and place them under the directory`./embedding/`)
 
 
-#### Input1: Sequence
+### Input1: Sequence
 
 fasta/csv sequence file
 
-#### Input2: Sequence pretrained embedding
+### Input2: Sequence pretrained embedding
 
 To generate sequence pretrained embedding, run `./model_train_test/pretrained_embedding_generate.py` directly:
 
@@ -31,7 +37,7 @@ python model_train_test/pretrained_embedding_generate.py
 
 You may also refer to **[ProtTrans](https://github.com/agemagician/ProtTrans)** for detailed explanations.
 
-#### Input3: Structure pretrained embedding
+### Input3: Structure pretrained embedding
 
 Firstly, git clone the `EMBER2` project. After moving the file `./model_train_test/pretrained_embedding_generate.py` into the `EMBER2` folder, you may run the model to generate structure embeddding:
 
@@ -52,7 +58,7 @@ You may also refer to **[EMBER2](https://github.com/kWeissenow/EMBER2)** for det
 
 
 
-### Step2: Training PTransIPs Model
+## Step2: Training PTransIPs Model
 
 (**For ones that wish to skip this step:** you may [**Download the PTransIPs model**](https://1drv.ms/f/s!AqzWnkSOWHpvhxMUDCjM9KFpz50O?e=N23jEn) directly. Remember to place them under `.\model\Y_train` or `.\model\ST_train` so that you can proceed to the evaluation step directly.)
 
@@ -66,7 +72,7 @@ python model_train_test/train.py
 
 
 
-### Step3: Evaluate the model performance on independent testset
+## Step3: Evaluate the model performance on independent testset
 
 Run `./model_train_test/model_performance _evaluate.py` to evaluate the model performance on independent testset.
 
@@ -80,7 +86,7 @@ Files `path/PTransIPs_test_prob.npy` and `path/PTransIPs_text_result.txt` will b
 
 
 
-### Step4: Other Visual analysis
+## Step4: Other Visual analysis
 
 **You can see the results directly in the files uploaded, in the directory `figures/umap_pdf`**.
 
